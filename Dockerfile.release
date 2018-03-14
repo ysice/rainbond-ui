@@ -30,7 +30,7 @@ RUN apk update && apk --no-cache add --virtual .build-deps \
       && cp -a /usr/lib/libmysqlclient.so.18* /tmp/ \
       && cp -a /usr/lib/libmemcached* /tmp/ \
       && apk del .build-deps \
-      && cp -a /tmp/libmysqlclient.so.18* /usr/lib/
+      && cp -a /tmp/libmysqlclient.so.18* /usr/lib/ \
       && cp -a /tmp/libmemcached* /usr/lib/
 
 
