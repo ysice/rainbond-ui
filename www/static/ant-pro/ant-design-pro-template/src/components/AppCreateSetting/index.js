@@ -631,7 +631,7 @@ class PHP extends PureComponent {
       }
     };
 
-    if (!runtimeInfo.runtimes && !runtimeInfo.procfile && !runtimeInfo.dependencies) {
+    if (runtimeInfo.runtimes && runtimeInfo.procfile && runtimeInfo.dependencies) {
       return null;
     }
 
@@ -1047,7 +1047,7 @@ class Mnt extends PureComponent {
   handleSubmitAddMnt = (mnts) => {
     addMnt({
       team_name: globalUtil.getCurrTeamName(),
-      app_alias: this.props.appAlias,
+      app_alias: this.props.appDetail.service.service_alias,
       body: mnts
     }).then((data) => {
       if (data) {
@@ -1102,7 +1102,7 @@ class Mnt extends PureComponent {
   }
   render() {
     const {mntList} = this.state;
-    const {volumes} = this.props;
+    const {volumes} = this.state;
     const columns = [
       {
         title: '持久化名称',
@@ -1698,6 +1698,7 @@ class Ports extends PureComponent {
         <div className={styles.ports}>
           {ports.map((port) => {
             return <Port
+              showOuterUrl={false}
               showDomain={false}
               port={port}
               onDelete={this.handleDeletePort}
